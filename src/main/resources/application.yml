@@ -1,0 +1,11 @@
+server:
+  port: 8089
+spring:
+  datasource:
+    url: jdbc:sqlite::resource:db\manager.sqlite3
+    driver-class-name: org.sqlite.JDBC
+
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
