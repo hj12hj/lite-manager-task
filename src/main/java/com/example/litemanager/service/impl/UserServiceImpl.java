@@ -1,6 +1,7 @@
 package com.example.litemanager.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.litemanager.conmon.LocalToken;
 import com.example.litemanager.conmon.ReturnMessage;
 import com.example.litemanager.constant.ConmonConstant;
 import com.example.litemanager.domain.User;
@@ -10,6 +11,8 @@ import com.example.litemanager.utils.PasswdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
+
+import java.util.*;
 
 /**
  * @author hj
@@ -29,9 +32,28 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         User loginUser = userMapper.findByUserNameUser(username);
         String md5 = PasswdUtils.generatePasswd(password);
         if (loginUser != null && loginUser.getPassword().equals(md5)) {
-            return ReturnMessage.success("登录成功");
+            Map<String, String> map = new HashMap<>();
+            String uuid = UUID.randomUUID().toString();
+            LocalToken.tokenMap.put(uuid, username);
+            map.put("token", uuid);
+            return ReturnMessage.success("登录成功", map);
         }
         return ReturnMessage.error("登录失败");
+    }
+
+    @Override
+    public ReturnMessage getInfo() {
+
+        List<String> roles = new ArrayList<>();
+        roles.add("admin");
+        roles.add("super_admin");
+        Map<String, Object> map = new HashMap<>();
+        map.put("access", roles);
+        map.put("avatar", "https://file.iviewui.com/dist/a0e88e83800f138b94d2414621bd9704.png");
+        map.put("name", "super_admin");
+        map.put("user_id", "1111");
+
+        return ReturnMessage.success("获取成功", map);
     }
 }
 

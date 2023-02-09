@@ -7,58 +7,72 @@ package com.example.litemanager.conmon;
  */
 public class ReturnMessage {
 
-        private String code;
-        private String message;
-        private Object data;
+    private String code;
+    private String message;
+    private Object data;
 
+    private String token;
 
-        public static ReturnMessage success(Object data) {
-            return new ReturnMessage("200", "success", data);
-        }
+    public String getToken() {
+        return token;
+    }
 
-        public static ReturnMessage error(String message) {
-            return new ReturnMessage("500", message, null);
-        }
+    public ReturnMessage setToken(String token) {
+        this.token = token;
+        return this;
+    }
 
-        public ReturnMessage() {
-        }
+    public static ReturnMessage success(Object data) {
+        return new ReturnMessage("200", "success", data);
+    }
 
-        public ReturnMessage(String code, String message, Object data) {
-            this.code = code;
-            this.message = message;
-            this.data = data;
-        }
+    public static ReturnMessage success(String msg, Object data) {
+        return new ReturnMessage("200", msg, data);
+    }
 
-        public String getCode() {
-            return code;
-        }
+    public static ReturnMessage error(String message) {
+        return new ReturnMessage("500", message, null);
+    }
 
-        public void setCode(String code) {
-            this.code = code;
-        }
+    public ReturnMessage() {
+    }
 
-        public String getMessage() {
-            return message;
-        }
+    public ReturnMessage(String code, String message, Object data) {
+        this.code = code;
+        this.message = message;
+        this.data = data;
+    }
 
-        public void setMessage(String message) {
-            this.message = message;
-        }
+    public String getCode() {
+        return code;
+    }
 
-        public Object getData() {
-            return data;
-        }
+    public void setCode(String code) {
+        this.code = code;
+    }
 
-        public void setData(Object data) {
-            this.data = data;
-        }
+    public String getMessage() {
+        return message;
+    }
 
-        @Override
-        public String toString() {
-            return "ReturnMessage{" +
-                    "code='" + code + '\'' +
-                    ", message='" + message + '\'' +
-                    ", data=" + data +
-                    '}';
-        }
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Object getData() {
+        return data;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
+    }
+
+    @Override
+    public String toString() {
+        return "ReturnMessage{" +
+                "code='" + code + '\'' +
+                ", message='" + message + '\'' +
+                ", data=" + data +
+                '}';
+    }
 }

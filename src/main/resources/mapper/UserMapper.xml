@@ -10,14 +10,12 @@
         <result property="password" column="password" jdbcType="VARCHAR"/>
         <result property="wxName" column="wx_name" jdbcType="VARCHAR"/>
         <result property="version" column="version" jdbcType="INTEGER"/>
-        <result property="lastUpdateTime" column="last_update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id
         ,user_name,phone_number,
-        password,wx_name,version,
-        last_update_time
+        password,wx_name,version
     </sql>
 
     <select id="findByUserNameUser" resultType="com.example.litemanager.domain.User">

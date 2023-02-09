@@ -50,15 +50,15 @@ export default [
       }
     ]
   },
-  {
-    path: '',
-    name: 'doc',
-    meta: {
-      title: '文档',
-      href: 'https://lison16.github.io/iview-admin-doc/#/',
-      icon: 'ios-book'
-    }
-  },
+  // {
+  //   path: '',
+  //   name: 'doc',
+  //   meta: {
+  //     title: '文档',
+  //     icon: 'ios-book'
+  //   },
+  //   component: () => import('@/pages/table.vue'),
+  // },
   {
     path: '/join',
     name: 'join',
@@ -362,14 +362,14 @@ export default [
     component: Main,
     children: [
       {
-        path: 'directive_page',
-        name: 'directive_page',
+        path: '',
+        name: 'doc',
         meta: {
-          icon: 'ios-navigate',
-          title: '指令'
+          title: '文档',
+          icon: 'ios-book'
         },
-        component: () => import('@/view/directive/directive.vue')
-      }
+        component: () => import('@/pages/table.vue'),
+      },
     ]
   },
   {

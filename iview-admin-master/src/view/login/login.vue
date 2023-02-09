@@ -34,6 +34,8 @@ export default {
             name: this.$config.homeName
           })
         })
+      }).catch(err => {
+        this.$Message.error("网络错误，请稍后再试！")
       })
     }
   }
