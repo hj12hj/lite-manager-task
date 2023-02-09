@@ -26,15 +26,20 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/api/login")
+    @PostMapping("/login")
     public ReturnMessage login(@RequestBody User user) {
         return userService.login(user.getUserName(), user.getPassword());
     }
 
-    @GetMapping("/api/get_info")
+    @GetMapping("/get_info")
     public ReturnMessage test() {
 
         return userService.getInfo();
+    }
+
+    @GetMapping("/user/list")
+    public ReturnMessage userList() {
+        return ReturnMessage.success(userService.list());
     }
 
 
