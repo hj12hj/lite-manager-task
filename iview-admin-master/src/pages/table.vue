@@ -17,7 +17,7 @@
   </Card>
 </template>
 <script>
-    import {getUserList} from "@/api/user";
+import {deleteByid, getUserList} from "@/api/user";
 
     export default {
       mounted() {
@@ -57,11 +57,18 @@
             show (index) {
                 this.$Modal.info({
                     title: 'User Info',
-                    content: `Name：${this.data[index].name}<br>Age：${this.data[index].age}<br>Address：${this.data[index].address}`
+                    content: `Name：${this.data[index].userName}<br>Age：${this.data[index].wxName}<br>Address：${this.data[index].phoneNumber}`
                 })
             },
             remove (index) {
-                this.data.splice(index, 1);
+              deleteByid(this.data[index].id).then(res => {
+                this.$Message.success('删除成功')
+                getUserList().then(res => {
+                  this.data = res.data.data
+                  // console.log(this.data)
+                })
+
+              })
             }
         }
     }

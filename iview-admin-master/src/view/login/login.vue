@@ -29,13 +29,18 @@ export default {
     ]),
     handleSubmit ({ userName, password }) {
       this.handleLogin({ userName, password }).then(res => {
-        this.getUserInfo().then(res => {
-          this.$router.push({
-            name: this.$config.homeName
+        if (res.data.code == '403') {
+           this.$Message.error("用户名或密码错误！")
+        }else {
+          this.$Message.success("登录成功！")
+          this.getUserInfo().then(res => {
+            this.$router.push({
+              name: this.$config.homeName
+            })
           })
-        })
-      }).catch(err => {
-        this.$Message.error("网络错误，请稍后再试！")
+        }
+      }).catch(res=>{
+          this.$Message.error("网络错误！")
       })
     }
   }

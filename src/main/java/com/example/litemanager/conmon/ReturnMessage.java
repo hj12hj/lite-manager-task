@@ -30,6 +30,10 @@ public class ReturnMessage {
         return new ReturnMessage("200", msg, data);
     }
 
+    public static ReturnMessage error(String code,String message) {
+        return new ReturnMessage(code, message, null);
+    }
+
     public static ReturnMessage error(String message) {
         return new ReturnMessage("500", message, null);
     }

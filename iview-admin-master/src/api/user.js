@@ -1,6 +1,13 @@
 import axios from '@/libs/api.request'
 
 
+export const deleteByid = (id) => {
+  return axios.request({
+    url: '/user/delete/'+id,
+    method: 'delete'
+  })
+}
+
 export const getUserList=()=>{
   return axios.request({
     url: '/user/list',

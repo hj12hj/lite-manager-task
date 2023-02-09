@@ -5,10 +5,7 @@ import com.example.litemanager.domain.User;
 import com.example.litemanager.service.UserService;
 import com.example.litemanager.utils.PasswdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,6 +37,11 @@ public class UserController {
     @GetMapping("/user/list")
     public ReturnMessage userList() {
         return ReturnMessage.success(userService.list());
+    }
+
+    @DeleteMapping("/user/delete/{id}")
+    public ReturnMessage deleteUser(@PathVariable("id") Integer id) {
+        return ReturnMessage.success(userService.removeById(id));
     }
 
 

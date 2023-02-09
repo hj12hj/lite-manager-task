@@ -1,14 +1,20 @@
 server:
   port: 8081
 
-spring:
-  datasource:
-    url: jdbc:sqlite::resource:db/manager.sqlite3
-    driver-class-name: org.sqlite.JDBC
-
+#spring:
+#  datasource:
+#    url: jdbc:sqlite::resource:db/manager.sqlite3
+#    driver-class-name: org.sqlite.JDBC
+#
 
 
 
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/auth?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456

@@ -27,6 +27,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     @Autowired
     private UserMapper userMapper;
 
+    public static void main(String[] args) {
+        System.out.println(PasswdUtils.generatePasswd("123456"));
+    }
+
     @Override
     public ReturnMessage login(String username, String password) {
         User loginUser = userMapper.findByUserNameUser(username);
@@ -38,7 +42,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             map.put("token", uuid);
             return ReturnMessage.success("登录成功", map);
         }
-        return ReturnMessage.error("登录失败");
+        return ReturnMessage.error("403","登录失败");
     }
 
     @Override
