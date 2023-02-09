@@ -1,5 +1,6 @@
 package com.example.litemanager.service;
 
+import com.example.litemanager.conmon.ReturnMessage;
 import com.example.litemanager.domain.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -9,5 +10,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2023-02-08 21:12:29
 */
 public interface UserService extends IService<User> {
-
+    ReturnMessage login(String username, String password);
 }
