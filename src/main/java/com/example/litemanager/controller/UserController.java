@@ -7,10 +7,7 @@ import com.example.litemanager.utils.PasswdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author: hj
@@ -35,8 +32,8 @@ public class UserController {
     }
 
     @GetMapping("/user/list")
-    public ReturnMessage userList() {
-        return ReturnMessage.success(userService.list());
+    public ReturnMessage userList(@RequestParam("page") int page, @RequestParam("pageSize") int pageSize, User user) {
+        return userService.getUserList(page, pageSize, user);
     }
 
     @DeleteMapping("/user/delete/{id}")
@@ -44,5 +41,21 @@ public class UserController {
         return ReturnMessage.success(userService.removeById(id));
     }
 
+
+    @PostMapping("/user/update")
+    public ReturnMessage updateUser(@RequestBody User user) {
+        return ReturnMessage.success(userService.updateById(user));
+    }
+
+    @PostMapping("/user/add")
+    public ReturnMessage addUser(@RequestBody User user) {
+        user.setPassword(PasswdUtils.generatePasswd("123456"));
+        return ReturnMessage.success(userService.save(user));
+    }
+
+    @PostMapping("/logout")
+    public ReturnMessage addUser() {
+        return ReturnMessage.success(null);
+    }
 
 }

@@ -1,5 +1,8 @@
 package com.example.litemanager.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.litemanager.conmon.LocalToken;
 import com.example.litemanager.conmon.ReturnMessage;
@@ -42,7 +45,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             map.put("token", uuid);
             return ReturnMessage.success("登录成功", map);
         }
-        return ReturnMessage.error("403","登录失败");
+        return ReturnMessage.error("403", "登录失败");
     }
 
     @Override
@@ -58,6 +61,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         map.put("user_id", "1111");
 
         return ReturnMessage.success("获取成功", map);
+    }
+
+    @Override
+    public ReturnMessage getUserList(int page,int pageSize,User user) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        if (user.getUserName() != null && !"".equals(user.getUserName())) {
+            queryWrapper.like("user_name", user.getUserName());
+        }
+        IPage<User> pageUser = page(new Page<>(page, pageSize), queryWrapper);
+        return ReturnMessage.success("获取成功", pageUser);
     }
 }
 

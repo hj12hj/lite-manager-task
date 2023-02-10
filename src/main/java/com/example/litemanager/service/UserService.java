@@ -13,4 +13,6 @@ public interface UserService extends IService<User> {
     ReturnMessage login(String username, String password);
 
     ReturnMessage getInfo();
+
+    ReturnMessage getUserList(int page,int pageSize ,User user);
 }

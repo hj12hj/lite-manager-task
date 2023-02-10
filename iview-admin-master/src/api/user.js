@@ -1,6 +1,22 @@
 import axios from '@/libs/api.request'
 
 
+export const addUser = (data) => {
+  return axios.request({
+    url: '/user/add',
+    data,
+    method: 'post'
+  })
+}
+
+export const updateByid = (data) => {
+  return axios.request({
+    url: '/user/update',
+    data,
+    method: 'post'
+  })
+}
+
 export const deleteByid = (id) => {
   return axios.request({
     url: '/user/delete/'+id,
@@ -8,10 +24,11 @@ export const deleteByid = (id) => {
   })
 }
 
-export const getUserList=()=>{
+export const getUserList=(searchData)=>{
   return axios.request({
     url: '/user/list',
-    method: 'get'
+    method: 'get',
+    params: searchData
   })
 }
 
