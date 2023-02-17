@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.litemanager.mapper.TaskMapper">
+    <resultMap id="BaseResultMap" type="com.example.litemanager.domain.Task">
+        <id property="id" column="id" jdbcType="OTHER"/>
+        <id property="taskName" column="task_name" jdbcType="VARCHAR"/>
+        <id property="taskGroup" column="task_group" jdbcType="VARCHAR"/>
+        <result property="invokeTarget" column="invoke_target" jdbcType="VARCHAR"/>
+        <result property="cronExpression" column="cron_expression" jdbcType="VARCHAR"/>
+        <result property="misfirePolicy" column="misfire_policy" jdbcType="VARCHAR"/>
+        <result property="concurrent" column="concurrent" jdbcType="CHAR"/>
+        <result property="status" column="status" jdbcType="CHAR"/>
+        <result property="version" column="version" jdbcType="OTHER"/>
+        <result property="lastUpdateUser" column="last_update_user" jdbcType="OTHER"/>
+        <result property="lastUpdateTime" column="last_update_time" jdbcType="DATE"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id
+        ,task_name,task_group,
+        invoke_target,cron_expression,misfire_policy,
+        concurrent,status,version,
+        last_update_user,last_update_time
+    </sql>
+
+    <update id="updateTask" parameterType="com.example.litemanager.domain.Task">
+        update task
+        <set>
+            <if test="taskName != null">
+                task_name = #{taskName,jdbcType=VARCHAR},
+            </if>
+            <if test="taskGroup != null">
+                task_group = #{taskGroup,jdbcType=VARCHAR},
+            </if>
+            <if test="invokeTarget != null">
+                invoke_target = #{invokeTarget,jdbcType=VARCHAR},
+            </if>
+            <if test="cronExpression != null">
+                cron_expression = #{cronExpression,jdbcType=VARCHAR},
+            </if>
+            <if test="misfirePolicy != null">
+                misfire_policy = #{misfirePolicy,jdbcType=VARCHAR},
+            </if>
+            <if test="concurrent != null">
+                concurrent = #{concurrent,jdbcType=CHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=CHAR},
+            </if>
+            <if test="version != null">
+                version = #{version,jdbcType=OTHER},
+            </if>
+            <if test="lastUpdateUser != null">
+                last_update_user = #{lastUpdateUser,jdbcType=OTHER},
+            </if>
+            <if test="lastUpdateTime != null">
+                last_update_time = #{lastUpdateTime,jdbcType=DATE},
+            </if>
+        </set>
+        where id = #{id,jdbcType=OTHER}
+    </update>
+
+    <delete id="deleteTaskById" parameterType="Long">
+        delete
+        from task
+        where id = #{id,jdbcType=OTHER}
+    </delete>
+
+    <select id="selectTaskById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from task
+        where id = #{id}
+    </select>
+
+    <insert id="insertJob" parameterType="com.example.litemanager.domain.Task">
+        insert into task
+        (id, task_name, task_group, invoke_target, cron_expression, misfire_policy, concurrent, status, version,
+         last_update_user, last_update_time)
+        values (#{id,jdbcType=OTHER}, #{taskName,jdbcType=VARCHAR}, #{taskGroup,jdbcType=VARCHAR},
+                #{invokeTarget,jdbcType=VARCHAR}, #{cronExpression,jdbcType=VARCHAR}, #{misfirePolicy,jdbcType=VARCHAR},
+                #{concurrent,jdbcType=CHAR}, #{status,jdbcType=CHAR}, #{version,jdbcType=OTHER},
+                #{lastUpdateUser,jdbcType=OTHER}, #{lastUpdateTime,jdbcType=DATE})
+    </insert>
+
+    <update id="updateJob" parameterType="com.example.litemanager.domain.Task">
+        update task
+        <set>
+            <if test="taskName != null">
+                task_name = #{taskName,jdbcType=VARCHAR},
+            </if>
+            <if test="taskGroup != null">
+                task_group = #{taskGroup,jdbcType=VARCHAR},
+            </if>
+            <if test="invokeTarget != null">
+                invoke_target = #{invokeTarget,jdbcType=VARCHAR},
+            </if>
+            <if test="cronExpression != null">
+                cron_expression = #{cronExpression,jdbcType=VARCHAR},
+            </if>
+            <if test="misfirePolicy != null">
+                misfire_policy = #{misfirePolicy,jdbcType=VARCHAR},
+            </if>
+            <if test="concurrent != null">
+                concurrent = #{concurrent,jdbcType=CHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=CHAR},
+            </if>
+            <if test="version != null">
+                version = #{version,jdbcType=OTHER},
+            </if>
+            <if test="lastUpdateUser != null">
+                last_update_user = #{lastUpdateUser,jdbcType=OTHER},
+            </if>
+            <if test="lastUpdateTime != null">
+                last_update_time = #{lastUpdateTime,jdbcType=DATE},
+            </if>
+        </set>
+        where id = #{id,jdbcType=OTHER}
+    </update>
+</mapper>

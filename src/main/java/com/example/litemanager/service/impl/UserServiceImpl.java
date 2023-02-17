@@ -59,8 +59,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         map.put("avatar", "https://file.iviewui.com/dist/a0e88e83800f138b94d2414621bd9704.png");
         map.put("name", "super_admin");
         map.put("user_id", "1111");
-
         return ReturnMessage.success("获取成功", map);
+
     }
 
     @Override
